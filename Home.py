@@ -1,0 +1,1 @@
+print("WELCOME NZAVOTE SYSTEM!")
