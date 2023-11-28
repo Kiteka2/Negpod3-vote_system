@@ -87,7 +87,7 @@ def main():
         
         user_id = input("Enter your user ID: ")
         
-        if not user_id.isdigit() or user_id != 8:
+        if not user_id.isdigit() or len(user_id) != 8:
             print("Your user ID must be a digit of 8 values")
             continue
         choice =  input("Enter Candidate of your choice: ")
