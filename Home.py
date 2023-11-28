@@ -20,6 +20,7 @@ class Nzavote:
             if the ID is not 8 digits or not a number, we willl receive an error message
 
             if the ID is correct the user will proceed and vote for the candidate of his choice.
+            \chinedu will write here
 
             if the user enters the wrong candidate, the user will receive another error message
         
