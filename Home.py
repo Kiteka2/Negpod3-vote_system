@@ -20,6 +20,7 @@ class Nzavote:
             if the ID is not 8 digits or not a number, we willl receive an error message
 
             if the ID is correct the user will proceed and vote for the candidate of his choice.
+            \chinedu will write here
 
             if the user enters the wrong candidate, the user will receive another error message
         
@@ -57,6 +58,7 @@ class Nzavote:
 
 def main():
 
+
     """In this function we will call the Nzavote object and pass 
         list of candidates in it.
 
@@ -68,22 +70,27 @@ def main():
 
         The candidate of choice will also be entered by the user and that will be the first parameter
     """
-    candidates = ["Omar","Palvis", "Kevin", "Chiedu", "Nelson", "Naima"]
+
+    candidates = ["Omar", "Palvis", "Chinedu", "Nelson", "Kevin", "Naima"]
+
+    """"Call The Object"""
+
+
 
     Election = Nzavote(candidates)
-
     while True:
-        print("\nElection candidates--->\n")
+
+        print("Election candidates")
 
         for candidate in candidates:
-            print(f"-->>{candidate}")
-
-        user_id = input("\nEnter your user ID: ")
-        if not user_id.isdigit() or len(user_id) != 8:
-            print("\nYour user ID must be a digit of 8 characters\n")
+            print(f"{candidate}")
+        
+        user_id = input("Enter your user ID: ")
+        
+        if not user_id.isdigit() or user_id != 8:
+            print("Your user ID must be a digit of 8 values")
             continue
-
-        choice = input("\nEnter your candidate of choice or q to exit\n")
+        choice =  input("Enter Candidate of your choice: ")
         if choice.lower() == "q":
             break
         Election.vote(choice, user_id)
