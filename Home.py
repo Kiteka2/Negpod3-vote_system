@@ -1,10 +1,6 @@
-"""Nzavote takes args of candidates and Display them on the screeen
-Allow users to choose from among the candidates they want to vote for"""
 
 
 class Nzavote:
-    """ Defining Nzavote object"""
-
     def __init__(self, candidates):
         """Args:
         candidates ===> list of candidates for the election
@@ -24,6 +20,7 @@ class Nzavote:
             if the ID is not 8 digits or not a number, we willl receive an error message
 
             if the ID is correct the user will proceed and vote for the candidate of his choice.
+            \chinedu will write here
 
             if the user enters the wrong candidate, the user will receive another error message
         
@@ -61,6 +58,7 @@ class Nzavote:
 
 def main():
 
+
     """In this function we will call the Nzavote object and pass 
         list of candidates in it.
 
@@ -72,9 +70,12 @@ def main():
 
         The candidate of choice will also be entered by the user and that will be the first parameter
     """
+
     candidates = ["Omar", "Palvis", "Chinedu", "Nelson", "Kevin", "Naima"]
 
     """"Call The Object"""
+
+
 
     Election = Nzavote(candidates)
     while True:
@@ -94,5 +95,6 @@ def main():
             break
         Election.vote(choice, user_id)
     Election.result()
+
 if __name__ == "__main__":
     main()
