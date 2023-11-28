@@ -1,6 +1,10 @@
-priimport json
+"""Nzavote takes args of candidates and Display them on the screeen
+Allow users to choose from among the candidates they want to vote for"""
 
-class VotingSystem:
+
+class Nzavote:
+    """ Defining Nzavote object"""
+
     def __init__(self, candidates):
         """Args:
         candidates ===> list of candidates for the election
