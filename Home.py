@@ -1,10 +1,6 @@
-"""Nzavote takes args of candidates and Display them on the screeen
-Allow users to choose from among the candidates they want to vote for"""
 
 
 class Nzavote:
-    """ Defining Nzavote object"""
-
     def __init__(self, candidates):
         """Args:
         candidates ===> list of candidates for the election
@@ -72,7 +68,7 @@ def main():
 
         The candidate of choice will also be entered by the user and that will be the first parameter
     """
-    candidates = ["Omar", "Kevin", "Chinadu", "Nelson"]
+    candidates = ["Omar", "Kevin", "Chiedu", "Nelson", "Naima"]
 
     Election = Nzavote(candidates)
 
