@@ -37,7 +37,7 @@ class Nzavote:
             print(f"\nIn Valid candidate. Enter the correct candidate\n")
 
     def result(self):
-        """The result function shows the outcome of the the electio
+        """The result function shows the outcome of the electio
 
         example ===>
 
