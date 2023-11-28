@@ -80,13 +80,23 @@ def main():
     Election = Nzavote(candidates)
     while True:
 
+        print("Welcome to Nzavote voting system!")
+        '''
+            A comprehensive list of other features our application would have asides voting e.g renewal and/or purchase
+            of voters cards etcetera.
+        '''
         print("Election candidates")
 
         for candidate in candidates:
             print(f"{candidate}")
         
         user_id = input("Enter your user ID: ")
-        
+        '''
+            For this user ID it can't and shouldn't just be numbers. For example: the first 3 elements could
+            stand for the first the letters of the person's country, since this voting system is to be launched
+            across africa. e.g NIG07823 -- this can be a userid a valid one at that. NIG represents Nigeria, 078
+            represents the 78th voter for the country nigeria, and 23 stands for 2023 elections. like that.
+        '''
         if not user_id.isdigit() or len(user_id) != 8:
             print("Your user ID must be a digit of 8 values")
             continue
