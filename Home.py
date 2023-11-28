@@ -72,26 +72,27 @@ def main():
 
         The candidate of choice will also be entered by the user and that will be the first parameter
     """
-    candidates = ["Omar", "Kevin", "Chinadu", "Nelson"]
+    candidates = ["Omar", "Palvis", "Chinedu", "Nelson", "Kevin", "Naima"]
+
+    """"Call The Object"""
 
     Election = Nzavote(candidates)
-
     while True:
-        print("\nElection candidates--->\n")
+
+        print("Election candidates")
 
         for candidate in candidates:
-            print(f"-->>{candidate}")
-
-        user_id = input("\nEnter your user ID: ")
-        if not user_id.isdigit() or len(user_id) != 8:
-            print("\nYour user ID must be a digit of 8 characters\n")
+            print(f"{candidate}")
+        
+        user_id = input("Enter your user ID: ")
+        
+        if not user_id.isdigit() or user_id != 8:
+            print("Your user ID must be a digit of 8 values")
             continue
-
-        choice = input("\nEnter your candidate of choice or q to exit\n")
+        choice =  input("Enter Candidate of your choice: ")
         if choice.lower() == "q":
             break
         Election.vote(choice, user_id)
     Election.result()
-
 if __name__ == "__main__":
     main()
