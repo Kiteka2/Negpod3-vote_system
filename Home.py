@@ -68,7 +68,7 @@ def main():
 
         The candidate of choice will also be entered by the user and that will be the first parameter
     """
-    candidates = ["Omar", "Kevin", "Chiedu", "Nelson", "Naima"]
+    candidates = ["Omar", "Kevin", "Chiedu", "Nelson", "Naima","Palvis"]
 
     Election = Nzavote(candidates)
 
