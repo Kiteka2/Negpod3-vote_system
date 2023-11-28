@@ -1,4 +1,4 @@
-priimport json
+import json
 
 class VotingSystem:
     def __init__(self, candidates):
