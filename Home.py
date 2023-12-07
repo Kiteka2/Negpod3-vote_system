@@ -56,7 +56,7 @@ class Nzavote:
 
         example ===>
 
-        Election Results:
+        Election Rsults:
 
         Omar: 1 Votes
         Chinedu: 5 Votes
