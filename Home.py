@@ -120,7 +120,7 @@ def main():
 
 
 
-            user_choice = int(input("\nWelcome to Nzavote voting system!\nwe make election processes easy\nand fraud-free!\nBefore we begin, pls select your country:\ \n1. Rwanda\n2. Nigeria\n3. Kenya\n4. Gambia\n5. Is your country not listed?: a "))
+            user_choice = int(input("\nWelcome to Nzavote voting system!\nwe make election processes easy\nand fraud-free!\nBefore we begin, pls select your country:\ \n1. Rwanda\n2. Nigeria\n3. Kenya\n4. Gambia\n5. Is your country not listed?: "))
             
             user_input(user_choice)
             '''
@@ -140,7 +140,7 @@ def main():
                 across africa. e.g NIG07823 -- this can be a userid a valid one at that. NIG represents Nigeria, 078
                 represents the 78th voter for the country nigeria, and 23 stands for 2023 elections. like that.
             '''
-            if not user_id.isdigit() or len(user_id) != 8:
+            if len(user_id) != 8:
                 print("Your user ID must be a digit of 8 values")
                 continue
             choice =  input("Enter Candidate of your choice: \n")
@@ -152,14 +152,28 @@ def main():
 
 
         elif user_option == 'b':
+            country = input("Please select your country:\n1. Rwanda\n2. Nigeria\n3. Kenya\n4. Gambia\nCountry: ")
             name = input("Enter your full name: ")
             previous_id = input("Enter Previous ID to renew: ")
 
             if len(previous_id) == 8:
-                new_id = int(''.join(str(random.randint(0, 9)) for _ in range(8)))
 
-                print(f"\nVoters card successfully renewed:\nName: {name}\nNew_ID: {new_id}\n")
-                break
+                new_id = int(''.join(str(random.randint(0, 9)) for _ in range(5)))
+
+
+                if country == "1":
+                    print(f"\nVoters card successfully renewed:\nName: {name}\nNew_ID: RWD{new_id}\n")
+                
+                elif country == "2":
+                    print(f"\nVoters card successfully renewed:\nName: {name}\nNew_ID: NIG{new_id}\n")
+
+                elif country == "3":
+                    print(f"\nVoters card successfully renewed:\nName: {name}\nNew_ID: KEN{new_id}\n")
+                elif country == "4":
+                    print(f"\nVoters card successfully renewed:\nName: {name}\nNew_ID: GMB{new_id}\n")
+
+                else:
+                    print("Your country not available")
             
             else:
                 print("Please enter a correct ID of 8 digits")
