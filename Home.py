@@ -16,8 +16,8 @@ class Nzavote:
         self.user_ids = set()
 
     def vote(self, candidate, user_id):
-        """Vote function takes in candidate user wanted to vote for and users ID
-            if the ID is not 8 digits or not a number, we willl receive an error message
+        """Vote function takes in the candidate the user wants to vote for and users ID
+            if the ID is not 8 digits or not a number, we will receive an error message.
 
             if the ID is correct the user will proceed and vote for the candidate of his choice.
             \chinedu will write here
