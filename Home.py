@@ -192,7 +192,7 @@ def main():
             print("Election candidates")
 
             for candidate in candidates:
-                print(f"{candidate}")
+                print(f"  {candidate}")
             
             user_id = input("Enter your user ID: ")
             '''
