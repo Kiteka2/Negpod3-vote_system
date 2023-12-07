@@ -113,29 +113,7 @@ def main():
         'database': 'Election_results',
         }
     
-        # Establish a connection to the database
-    connection = mysql.connector.connect(**db_config)
-
-    # Create a cursor to execute SQL queries
-    cursor = connection.cursor()
-
-    try:
-        # Create a user with a wildcard for username and hostname
-        cursor.execute("CREATE USER '%'@'%' IDENTIFIED BY 'mansaring';")
-
-        # Grant all privileges on all databases and tables
-        cursor.execute("GRANT ALL PRIVILEGES ON *.* TO '%'@'%';")
-
-        # Apply changes
-        connection.commit()
-        print("Access granted to everyone.")
-    except mysql.connector.Error as err:
-        print(f"Error: {err}")
-    finally:
-        # Close the cursor and connection
-        cursor.close()
-        connection.close()
-
+ 
 
     Election = Nzavote(candidates, db_config)    
                 
@@ -143,13 +121,13 @@ def main():
 
     while True:
 
-        print("\nWelcome to Nzavote voting system!\nwe make election processes easy\nand fraud-free! Enter:\n \nA - To Initialize The Voting Process\nB - To Renew Voters Card\nC - To See Results\n")
+        print("\nWelcome to Nzavote voting system!\nwe make election processes easy\nand fraud-free! Enter:\n \n1 - To Initialize The Voting Process\n2 - To Renew Voters Card\n3 - To See Results\n")
         
         user_option = input("Choice: ")
 
         user_option = user_option.lower()
 
-        if user_option == 'a':
+        if user_option == '1':
 
 
             def user_input(choice):
@@ -210,7 +188,7 @@ def main():
             
 
 
-        elif user_option == 'b':
+        elif user_option == '2':
             country = input("Please select your country:\n1. Rwanda\n2. Nigeria\n3. Kenya\n4. Gambia\nCountry: ")
             name = input("Enter your full name: ")
             previous_id = input("Enter Previous ID to renew: ")
@@ -236,7 +214,7 @@ def main():
             
             else:
                 print("Please enter a correct ID of 8 digits")
-        elif user_option =='c':
+        elif user_option =='3':
             Election.result()
             Election.store_results_in_database()
             break
