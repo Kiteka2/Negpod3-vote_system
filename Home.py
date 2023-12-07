@@ -1,8 +1,9 @@
 import time
 import random
+import mysql.connector
 
 class Nzavote:
-    def __init__(self, candidates):
+    def __init__(self, candidates, db_config):
         """Args:
         candidates ===> list of candidates for the election
 
@@ -15,6 +16,18 @@ class Nzavote:
         self.candidates = candidates
         self.votes = {candidate: 0 for candidate in candidates}
         self.user_ids = set()
+    
+        # Initialize MySQL connection
+        self.connection = mysql.connector.connect(**db_config)
+        self.cursor = self.connection.cursor()
+
+        # Create the table if it doesn't exist
+        self.cursor.execute("""
+            CREATE TABLE IF NOT EXISTS election_results (
+                candidate VARCHAR(255) PRIMARY KEY,
+                votes INT
+            )
+        """)
 
     def vote(self, candidate, user_id):
         """Vote function takes in candidate user wanted to vote for and users ID
@@ -52,10 +65,24 @@ class Nzavote:
         -
         
         """
+            # Execute SQL query to fetch election results from the database
+        self.cursor.execute("SELECT candidate, votes FROM election_results")
+
+    # Fetch all rows from the result set
+        results = self.cursor.fetchall()
+
         print("\nElection Results:\n")
     
-        for candidate, vote in self.votes.items():
+        for candidate, vote in results:
             print(f"{candidate}: {vote} Votes")
+ 
+
+    def store_results_in_database(self):
+        """Store election results in the MySQL database."""
+        for candidate, vote in self.votes.items():
+            self.cursor.execute("INSERT INTO election_results (candidate, votes) VALUES (%s, %s) ON DUPLICATE KEY UPDATE votes = votes + %s",
+                                (candidate, vote, vote))
+        self.connection.commit()
 
 def main():
 
@@ -76,10 +103,19 @@ def main():
 
     """"Call The Object"""
 
+  
+        # ... (existing main function code)
+
+    db_config = {
+        'host': 'localhost',
+        'user': 'omar',
+        'password': 'mansaring',
+        'database': 'Election_results',
+        }
 
 
-    Election = Nzavote(candidates)      
-            
+    Election = Nzavote(candidates, db_config)    
+                
         
 
     while True:
@@ -179,7 +215,9 @@ def main():
                 print("Please enter a correct ID of 8 digits")
         elif user_option =='c':
             Election.result()
+            Election.store_results_in_database()
             break
+    
 
 
 
