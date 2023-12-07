@@ -1,0 +1,1 @@
+Welcome to Nzavote voting system!\nwe make election processes easy\nand fraud-free!
