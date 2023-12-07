@@ -1,4 +1,4 @@
-
+import time
 
 class Nzavote:
     def __init__(self, candidates):
@@ -78,13 +78,30 @@ def main():
 
 
     Election = Nzavote(candidates)
+    def user_input(choice):
+        choice = int(choice)
+        if choice == 1:
+            print("Next page loading")
+        elif choice == 2:
+            print("Next page loading")
+        elif choice == 3:
+            print("Next page loading")
+        elif choice == 4:
+            print("Next page loading")
+        elif choice == 5:
+            print("Seems like our services have not reached your country just yet")
+        '''
+            For each of the next page loading, they represent a different country as seen from the demo. So the next page for each of them is to be similar i.e contain the various features the constitution of such country has for its citizens in terms of electoral procedures. e.g the next page would include a number of prompts, depending on the various kinds of services offered in each country for elections, ranging from 1. Apply for Voter's Card 2. Renewal of Voter's Card 3. See Candidated(Presidential elections/Govermental Elections) 4. Vote /this is where the current code we have worked on comes under 5. View Results /if results aren't out yet, a good if statement will do the trick.
+        '''
     while True:
 
-        print("Welcome to Nzavote voting system!")
+        user_choice = int(input("Welcome to Nzavote voting system!\nwe make election processes easy\nand fraud-free!\nBefore we begin, pls select your country:\n1. Rwanda\n2. Nigeria\n3. Kenya\n4. Gambia\n5. Is your country not listed? "))
+        user_input(user_choice)
         '''
             A comprehensive list of other features our application would have asides voting e.g renewal and/or purchase
             of voters cards etcetera.
         '''
+        time.sleep(2)
         print("Election candidates")
 
         for candidate in candidates:
