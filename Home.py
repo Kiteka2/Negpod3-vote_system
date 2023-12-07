@@ -120,7 +120,7 @@ def main():
 
 
 
-            user_choice = int(input("\nWelcome to Nzavote voting system!\nwe make election processes easy\nand fraud-free!\nBefore we begin, pls select your country:\ \n1. Rwanda\n2. Nigeria\n3. Kenya\n4. Gambia\n5. Is your country not listed?\n "))
+            user_choice = int(input("\nWelcome to Nzavote voting system!\nwe make election processes easy\nand fraud-free!\nBefore we begin, pls select your country:\ \n1. Rwanda\n2. Nigeria\n3. Kenya\n4. Gambia\n5. Is your country not listed?: a "))
             
             user_input(user_choice)
             '''
@@ -143,10 +143,11 @@ def main():
             if not user_id.isdigit() or len(user_id) != 8:
                 print("Your user ID must be a digit of 8 values")
                 continue
-            choice =  input("Enter Candidate of your choice: ")
+            choice =  input("Enter Candidate of your choice: \n")
             if choice.lower() == "q":
                 break
             Election.vote(choice, user_id)
+        
             
 
 
@@ -157,12 +158,14 @@ def main():
             if len(previous_id) == 8:
                 new_id = int(''.join(str(random.randint(0, 9)) for _ in range(8)))
 
-                print(f"Voters card successfully renewed:\nName: {name}\nNew_ID: {new_id}")
+                print(f"\nVoters card successfully renewed:\nName: {name}\nNew_ID: {new_id}\n")
+                break
             
             else:
                 print("Please enter a correct ID of 8 digits")
         elif user_option =='c':
             Election.result()
+            break
 
 
 
