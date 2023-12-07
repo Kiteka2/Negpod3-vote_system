@@ -98,12 +98,8 @@ def main():
 
         The candidate of choice will also be entered by the user and that will be the first parameter
     """
-<<<<<<< HEAD
     candidates = ["Omar", "Kevin", "Chiedu", "Nelson", "Naima","Palvis"]
-=======
->>>>>>> 309a23c4528c4e440f10364c7f7b416f6e1350d6
 
-    candidates = ["Omar", "Palvis", "Chinedu", "Nelson", "Kevin", "Naima"]
 
     """"Call The Object"""
 
