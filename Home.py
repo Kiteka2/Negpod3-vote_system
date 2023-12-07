@@ -1,7 +1,9 @@
-
+import time
+import random
+import mysql.connector
 
 class Nzavote:
-    def __init__(self, candidates):
+    def __init__(self, candidates, db_config):
         """Args:
         candidates ===> list of candidates for the election
 
@@ -14,12 +16,25 @@ class Nzavote:
         self.candidates = candidates
         self.votes = {candidate: 0 for candidate in candidates}
         self.user_ids = set()
+    
+        # Initialize MySQL connection
+        self.connection = mysql.connector.connect(**db_config)
+        self.cursor = self.connection.cursor()
+
+        # Create the table if it doesn't exist
+        self.cursor.execute("""
+            CREATE TABLE IF NOT EXISTS election_results (
+                candidate VARCHAR(255) PRIMARY KEY,
+                votes INT
+            )
+        """)
 
     def vote(self, candidate, user_id):
         """Vote function takes in candidate user wanted to vote for and users ID
             if the ID is not 8 digits or not a number, we willl receive an error message
 
             if the ID is correct the user will proceed and vote for the candidate of his choice.
+            \chinedu will write here
 
             if the user enters the wrong candidate, the user will receive another error message
         
@@ -37,7 +52,7 @@ class Nzavote:
             print(f"\nIn Valid candidate. Enter the correct candidate\n")
 
     def result(self):
-        """The result function shows the outcome of the the electio
+        """The result function shows the outcome of the election
 
         example ===>
 
@@ -50,12 +65,27 @@ class Nzavote:
         -
         
         """
+            # Execute SQL query to fetch election results from the database
+        self.cursor.execute("SELECT candidate, votes FROM election_results")
+
+    # Fetch all rows from the result set
+        results = self.cursor.fetchall()
+
         print("\nElection Results:\n")
     
-        for candidate, vote in self.votes.items():
+        for candidate, vote in results:
             print(f"{candidate}: {vote} Votes")
+ 
+
+    def store_results_in_database(self):
+        """Store election results in the MySQL database."""
+        for candidate, vote in self.votes.items():
+            self.cursor.execute("INSERT INTO election_results (candidate, votes) VALUES (%s, %s) ON DUPLICATE KEY UPDATE votes = votes + %s",
+                                (candidate, vote, vote))
+        self.connection.commit()
 
 def main():
+
 
     """In this function we will call the Nzavote object and pass 
         list of candidates in it.
@@ -68,26 +98,137 @@ def main():
 
         The candidate of choice will also be entered by the user and that will be the first parameter
     """
+<<<<<<< HEAD
     candidates = ["Omar", "Kevin", "Chiedu", "Nelson", "Naima","Palvis"]
+=======
+>>>>>>> 309a23c4528c4e440f10364c7f7b416f6e1350d6
 
-    Election = Nzavote(candidates)
+    candidates = ["Omar", "Palvis", "Chinedu", "Nelson", "Kevin", "Naima"]
+
+    """"Call The Object"""
+
+  
+        # ... (existing main function code)
+
+    db_config = {
+        'host': 'localhost',
+        'user': 'omar',
+        'password': 'mansaring',
+        'database': 'Election_results',
+        }
+
+
+    Election = Nzavote(candidates, db_config)    
+                
+        
 
     while True:
-        print("\nElection candidates--->\n")
 
-        for candidate in candidates:
-            print(f"-->>{candidate}")
+        print("\nWelcome to Nzavote voting system!\nwe make election processes easy\nand fraud-free! Enter:\n \nA - To Initialize The Voting Process\nB - To Renew Voters Card\nC - To See Results\n")
+        
+        user_option = input("Choice: ")
 
-        user_id = input("\nEnter your user ID: ")
-        if not user_id.isdigit() or len(user_id) != 8:
-            print("\nYour user ID must be a digit of 8 characters\n")
-            continue
+        user_option = user_option.lower()
 
-        choice = input("\nEnter your candidate of choice or q to exit\n")
-        if choice.lower() == "q":
+        if user_option == 'a':
+
+
+            def user_input(choice):
+                choice = int(choice)
+                if choice == 1:
+                    print("Next page loading")
+                elif choice == 2:
+                    print("Next page loading")
+                elif choice == 3:
+                    print("Next page loading")
+                elif choice == 4:
+                    print("Next page loading")
+                elif choice == 5:
+                    print("Seems like our services have not reached your country just yet")
+                
+            '''
+                For each of the next page loading, they represent a different country as seen from the demo.
+                So the next page for each of them is to be similar i.e contain the various features the constitution 
+                of such country has for its citizens in terms of electoral procedures. e.g the next page would include a 
+                number of prompts, depending on the various kinds of services offered in each country for elections, ranging 
+                from 1. Apply for Voter's Card 2. Renewal of Voter's Card 3. See Candidated(Presidential elections/Govermental 
+                Elections) 4. Vote /this is where the current code we have worked on comes under 5. View Results /if results 
+                aren't out yet, a good if statement will do the trick.
+            '''
+                    
+            
+
+
+
+            user_choice = int(input("\nWelcome to Nzavote voting system!\nwe make election processes easy\nand fraud-free!\nBefore we begin, pls select your country:\ \n1. Rwanda\n2. Nigeria\n3. Kenya\n4. Gambia\n5. Is your country not listed?: "))
+            
+            user_input(user_choice)
+            '''
+                A comprehensive list of other features our application would have asides voting e.g renewal and/or purchase
+                of voters cards etcetera.
+            '''
+            time.sleep(2)
+            print("Election candidates")
+
+            for candidate in candidates:
+                print(f"{candidate}")
+            
+            user_id = input("Enter your user ID: ")
+            '''
+                For this user ID it can't and shouldn't just be numbers. For example: the first 3 elements could
+                stand for the first the letters of the person's country, since this voting system is to be launched
+                across africa. e.g NIG07823 -- this can be a userid a valid one at that. NIG represents Nigeria, 078
+                represents the 78th voter for the country nigeria, and 23 stands for 2023 elections. like that.
+            '''
+            if len(user_id) != 8:
+                print("Your user ID must be a digit of 8 values")
+                continue
+            choice =  input("Enter Candidate of your choice: \n")
+            if choice.lower() == "q":
+                break
+            Election.vote(choice, user_id)
+        
+            
+
+
+        elif user_option == 'b':
+            country = input("Please select your country:\n1. Rwanda\n2. Nigeria\n3. Kenya\n4. Gambia\nCountry: ")
+            name = input("Enter your full name: ")
+            previous_id = input("Enter Previous ID to renew: ")
+
+            if len(previous_id) == 8:
+
+                new_id = int(''.join(str(random.randint(0, 9)) for _ in range(5)))
+
+
+                if country == "1":
+                    print(f"\nVoters card successfully renewed:\nName: {name}\nNew_ID: RWD{new_id}\n")
+                
+                elif country == "2":
+                    print(f"\nVoters card successfully renewed:\nName: {name}\nNew_ID: NIG{new_id}\n")
+
+                elif country == "3":
+                    print(f"\nVoters card successfully renewed:\nName: {name}\nNew_ID: KEN{new_id}\n")
+                elif country == "4":
+                    print(f"\nVoters card successfully renewed:\nName: {name}\nNew_ID: GMB{new_id}\n")
+
+                else:
+                    print("Your country not available")
+            
+            else:
+                print("Please enter a correct ID of 8 digits")
+        elif user_option =='c':
+            Election.result()
+            Election.store_results_in_database()
             break
-        Election.vote(choice, user_id)
-    Election.result()
+    
+
+
+
+
+        
+
+    
 
 if __name__ == "__main__":
     main()

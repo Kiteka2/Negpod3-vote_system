@@ -22,7 +22,7 @@ A function that will get users' input and confirm their voting choice.
 A function that will send the user a confirmation message of their vote and also thank them for using the system.
 
 USAGE:
-1. Run the application
+1. Run the application:
 	python home.py
 2. Follow the on-screen instructions to navigate through the menu and cast your vote.
 
